@@ -14,8 +14,5 @@ This repository contains a Docker Compose configuration for running SquashTM wit
 Clone this repository to your local machine:
 
 ```bash
-git clone [<repository-url>](https://github.com/rMi99/squashtest-docker.git)
+git clone https://github.com/rMi99/squashtest-docker.git
 cd squashtest-docker
-
-
-```http://localhost:8090
