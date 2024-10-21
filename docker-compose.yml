@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  squash-tm:
+    image: squashtest/squash
+    container_name: squash_tm
+    ports:
+      - "8090:8080"
+    environment:
+      SQTM_DB_TYPE: ${SQTM_DB_TYPE}
+      SQTM_DB_USERNAME: ${SQTM_DB_USERNAME}
+      SQTM_DB_PASSWORD: ${SQTM_DB_PASSWORD}
+      SQTM_DB_NAME: ${SQTM_DB_NAME}
+      SQTM_DB_HOST: mysql 
+      SQTM_DB_PORT: 3306
+      SQTM_ADMIN_USERNAME: ${SQTM_ADMIN_USERNAME}
+      SQTM_ADMIN_PASSWORD: ${SQTM_ADMIN_PASSWORD}
+    restart: always
+    depends_on:
+      - mysql  
+
+  mysql:
+    image: mariadb:latest  
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3320:3306"  
+    volumes:
+      - ./mysql-full-install-version-4.1.0.RELEASE.sql:/docker-entrypoint-initdb.d/mariadb.sql  
+    restart: always
