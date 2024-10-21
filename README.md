@@ -1,0 +1,1 @@
+# squashtest-docker
